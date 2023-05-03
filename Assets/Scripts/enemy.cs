@@ -32,6 +32,7 @@ public class enemy : MonoBehaviour
         float fracJourney = distCovered / journeyLength;
         if (transform.position != Waypoints[Waypoints.Count - 1].position)
         {
+            // Déplacez le GameObject entre les points A et B
             transform.position = Vector3.Lerp(Waypoints[x].position, Waypoints[b].position, fracJourney);
             if (transform.position == Waypoints[b].position)
             {
@@ -45,6 +46,5 @@ public class enemy : MonoBehaviour
                 }
             }
         }
-        // Déplacez le GameObject entre les points A et B
     }
 }
