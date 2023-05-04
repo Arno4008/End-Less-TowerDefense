@@ -20,7 +20,7 @@ public class enemy_navmesh : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (agent.remainingDistance <= 0)
+        if (agent.remainingDistance <= 1)
             Destroy(gameObject);
     }
 }
