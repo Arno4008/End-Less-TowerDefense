@@ -41,7 +41,9 @@ public class Manager : MonoBehaviour
                 boss.GetComponent<enemy_navmesh>().Move(Exit);
             }
             EnemyCount = 0;
-            Debug.Log("End. Wave:" + WaveCounter);
+            Var.Instance.hp = Var.Instance.hp_base;
+            Debug.Log("End. Wave: " + WaveCounter);
+            Debug.Log("HP: " + Var.Instance.hp);
             return;
         }
         CurrentSpawnTimer += Time.deltaTime;
@@ -52,6 +54,12 @@ public class Manager : MonoBehaviour
             CurrentEnemy.GetComponent<enemy_navmesh>().Move(Exit);
             CurrentSpawnTimer = 0;
             EnemyCount++;
+        }
+        if (Var.Instance.xp >= Var.Instance.xp_need)
+        {
+            Var.Instance.level++;
+            Var.Instance.xp = 0;
+            Var.Instance.xp_need += 50;
         }
     }
 }

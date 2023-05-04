@@ -5,8 +5,11 @@ using UnityEngine.AI;
 
 public class enemy_navmesh : MonoBehaviour
 {
+    public int damage;
+    public int gain;
+    public int XP;
     private NavMeshAgent agent;
-    // Start is called before the first frame update
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -21,6 +24,12 @@ public class enemy_navmesh : MonoBehaviour
     void Update()
     {
         if (agent.remainingDistance <= 1)
+        {
+            Debug.Log("Damage! HP: " + Var.Instance.hp);
+            Var.Instance.hp -= damage;
+            Var.Instance.monnaie += gain;
+            Var.Instance.xp += XP;
             Destroy(gameObject);
+        }
     }
 }
