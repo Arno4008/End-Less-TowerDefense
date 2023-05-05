@@ -6,6 +6,8 @@ public class Manager : MonoBehaviour
 {
     public GameObject Enemy;
     public GameObject Boss;
+    public int current_hp;
+    public int base_hp;
     public Transform Enter;
     public Transform Exit;
     public float timeBetweenSpawn = 2.0f;
@@ -18,9 +20,9 @@ public class Manager : MonoBehaviour
     private float CurrentSpawnTimer;
     private float CurrentWaveTimer;
     private int EnemyCount;
-    private bool my_bool;
     void Start() 
     {
+        current_hp = base_hp;
         CurrentSpawnTimer = timeBetweenSpawn;
         CurrentWaveTimer = 0;
         EnemyCount = 0;
@@ -28,12 +30,16 @@ public class Manager : MonoBehaviour
     }
     void Update()
     {
+        if (current_hp <= 0)
+        {
+            Debug.Log("Fin du jeu.");
+            return;
+        }
         CurrentWaveTimer += Time.deltaTime;
         if (EnemyCount >= EnemyPerWave && CurrentWaveTimer < TimeBetweenWave)
         {
             WaveCounter++;
             CurrentWaveTimer = 0;
-            my_bool = false;
             if (WaveCounter % BossWaveApparition == 0)
             {
                 Debug.Log("Boss !");
@@ -41,7 +47,6 @@ public class Manager : MonoBehaviour
                 boss.GetComponent<enemy_navmesh>().Move(Exit);
             }
             EnemyCount = 0;
-            Var.Instance.hp = Var.Instance.hp_base;
             Debug.Log("End. Wave: " + WaveCounter);
             Debug.Log("HP: " + Var.Instance.hp);
             return;
@@ -49,17 +54,20 @@ public class Manager : MonoBehaviour
         CurrentSpawnTimer += Time.deltaTime;
         if (CurrentSpawnTimer >= timeBetweenSpawn)
         {
-            my_bool = false;
             CurrentEnemy = Instantiate(Enemy, Enter.position, Quaternion.identity);
             CurrentEnemy.GetComponent<enemy_navmesh>().Move(Exit);
             CurrentSpawnTimer = 0;
             EnemyCount++;
         }
-        if (Var.Instance.xp >= Var.Instance.xp_need)
+ /*       if (Var.Instance.xp >= Var.Instance.xp_need)
         {
             Var.Instance.level++;
             Var.Instance.xp = 0;
             Var.Instance.xp_need += 50;
-        }
+        }*/
+    }
+    public void SpawnTower(GameObject Tower, Transform transform)
+    {
+        
     }
 }

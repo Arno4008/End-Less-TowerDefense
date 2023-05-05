@@ -8,10 +8,13 @@ public class enemy_navmesh : MonoBehaviour
     public int damage;
     public int gain;
     public int XP;
+    public int hp;
     private NavMeshAgent agent;
+    private Manager manager;
 
     void Awake()
     {
+        manager = FindObjectOfType<Manager>();
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -25,10 +28,12 @@ public class enemy_navmesh : MonoBehaviour
     {
         if (agent.remainingDistance <= 1)
         {
-            Debug.Log("Damage! HP: " + Var.Instance.hp);
-            Var.Instance.hp -= damage;
-            Var.Instance.monnaie += gain;
-            Var.Instance.xp += XP;
+            manager.current_hp -= damage;
+            Debug.Log("Damage! HP: " + manager.current_hp);
+            Destroy(gameObject);
+        }
+        if (hp <= 0)
+        {
             Destroy(gameObject);
         }
     }
