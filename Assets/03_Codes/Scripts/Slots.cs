@@ -6,29 +6,27 @@ using UnityEngine;
 public class Slots : MonoBehaviour
 {
     public GameObject tower;
-    private Camera camera;
-    // Start is called before the first frame update
+    private new Camera camera;
     void Start()
     {
         camera = Camera.main;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
 
     private void OnMouseDown()
     {
         RaycastHit hit;
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
-        // Do something with the object that was hit by the raycast.
         if (Physics.Raycast(ray, out hit))
         {
-            if(hit.transform.tag == "Slots")
+            if (hit.collider.gameObject.CompareTag("Slots") && hit.collider != null)
             {
-                Instantiate(tower, transform.position, Quaternion.identity);
+                GameObject selectedSlot = hit.collider.gameObject;
+                if (selectedSlot.transform.childCount == 0)
+                {
+                    Instantiate(tower, selectedSlot.transform.position, Quaternion.identity, selectedSlot.transform);
+                }
             }
         }
     }

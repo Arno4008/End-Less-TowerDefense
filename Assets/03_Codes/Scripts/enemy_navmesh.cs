@@ -34,6 +34,7 @@ public class enemy_navmesh : MonoBehaviour
         }
         if (hp <= 0)
         {
+            manager.money += 20;
             Destroy(gameObject);
         }
     }

@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7152111969367652359, guid: 92efce92599f3cf428933ef82ddeba42, type: 3}
       propertyPath: m_Name
-      value: BEscalier
+      value: BEscalier Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

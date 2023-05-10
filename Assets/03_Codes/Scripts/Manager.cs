@@ -6,22 +6,28 @@ public class Manager : MonoBehaviour
 {
     public GameObject Enemy;
     public GameObject Boss;
+    public GameObject EndUI;
     public int current_hp;
     public int base_hp;
+    public int levels;
+    public int xp;
+    public int xp_need;
+    public int money;
     public Transform Enter;
     public Transform Exit;
     public float timeBetweenSpawn = 2.0f;
     public GameObject CurrentEnemy;
     public int EnemyPerWave = 5;
     public int BossWaveApparition = 5;
-    public int WaveCounter = 0;
-    public float TimeBetweenWave = 5;
+    public int WaveCounter;
+    public float TimeBetweenWave = 20;
 
     private float CurrentSpawnTimer;
     private float CurrentWaveTimer;
     private int EnemyCount;
-    void Start() 
+    public void Start()
     {
+        EndUI.SetActive(false);
         current_hp = base_hp;
         CurrentSpawnTimer = timeBetweenSpawn;
         CurrentWaveTimer = 0;
@@ -30,9 +36,10 @@ public class Manager : MonoBehaviour
     }
     void Update()
     {
+        GetComponent<UIManager>().Uimanager(money, levels, current_hp, WaveCounter, (TimeBetweenWave - CurrentWaveTimer));
         if (current_hp <= 0)
         {
-            Debug.Log("Fin du jeu.");
+            EndUI.SetActive(true);
             return;
         }
         CurrentWaveTimer += Time.deltaTime;
@@ -42,13 +49,10 @@ public class Manager : MonoBehaviour
             CurrentWaveTimer = 0;
             if (WaveCounter % BossWaveApparition == 0)
             {
-                Debug.Log("Boss !");
                 GameObject boss = Instantiate(Boss, Enter.position, Quaternion.identity);
                 boss.GetComponent<enemy_navmesh>().Move(Exit);
             }
             EnemyCount = 0;
-            Debug.Log("End. Wave: " + WaveCounter);
-            Debug.Log("HP: " + Var.Instance.hp);
             return;
         }
         CurrentSpawnTimer += Time.deltaTime;
@@ -59,15 +63,11 @@ public class Manager : MonoBehaviour
             CurrentSpawnTimer = 0;
             EnemyCount++;
         }
- /*       if (Var.Instance.xp >= Var.Instance.xp_need)
+        if (xp >= xp_need)
         {
-            Var.Instance.level++;
-            Var.Instance.xp = 0;
-            Var.Instance.xp_need += 50;
-        }*/
-    }
-    public void SpawnTower(GameObject Tower, Transform transform)
-    {
-        
+            levels++;
+            xp = 0;
+            xp_need += 50;
+        }
     }
 }
