@@ -7,7 +7,6 @@ TagManager:
   - Enemy
   - Boss
   - Slots
-  - CloseUI
   layers:
   - Default
   - TransparentFX

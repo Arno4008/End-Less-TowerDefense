@@ -5,8 +5,7 @@ using UnityEngine;
 public class CloseUI : MonoBehaviour
 {
     public GameObject Canvas;
-    public GameObject Manager;
-    public void Update()
+    void Update()
     {
         if (Input.touchCount > 0)
         {
@@ -19,10 +18,10 @@ public class CloseUI : MonoBehaviour
                 RaycastHit2D hit = Physics2D.Raycast(touchPosition, Vector2.zero);
                 if (hit.collider != null && hit.collider.gameObject.CompareTag("CloseUI"))
                 {
-                    Canvas.SetActive(false);
-                    if (Canvas.name == "Bouton_Play")
+                    GameObject selectedSlot = hit.collider.gameObject;
+                    if (selectedSlot.transform.childCount == 0)
                     {
-                        Manager.GetComponent<Manager>().start = 1;
+                        Canvas.SetActive(false);
                     }
                 }
             }

@@ -22,7 +22,6 @@ public class Manager : MonoBehaviour
     public int WaveCounter;
     public float TimeBetweenWave = 20;
 
-    public int start = 0;
     private float CurrentSpawnTimer;
     private float CurrentWaveTimer;
     private int EnemyCount;
@@ -38,39 +37,31 @@ public class Manager : MonoBehaviour
     void Update()
     {
         GetComponent<UIManager>().Uimanager(money, levels, current_hp, WaveCounter, (TimeBetweenWave - CurrentWaveTimer));
-        if (start == 1)
+        if (current_hp <= 0)
         {
-            Debug.Log("Hewy");
-            GetComponent<UIManager>().Uimanager(money, levels, current_hp, WaveCounter, (TimeBetweenWave - CurrentWaveTimer));
-            if (current_hp <= 0)
-            {
-                EndUI.SetActive(true);
-                return;
-            }
-            CurrentWaveTimer += Time.deltaTime;
-            if (EnemyCount >= EnemyPerWave && CurrentWaveTimer < TimeBetweenWave)
-            {
-                WaveCounter++;
-                CurrentWaveTimer = 0;
-                if (WaveCounter % BossWaveApparition == 0)
-                {
-                    GameObject boss = Instantiate(Boss, Enter.position, Quaternion.identity);
-                    boss.GetComponent<enemy_navmesh>().Move(Exit);
-                }
-                EnemyCount = 0;
-                return;
-            }
-            CurrentSpawnTimer += Time.deltaTime;
-            if (CurrentSpawnTimer >= timeBetweenSpawn)
-            {
-                //CurrentEnemy = Instantiate(Enemy, Enter.position, Quaternion.identity);
-                //CurrentEnemy.GetComponent<enemy_navmesh>().Move(Exit);
-                CurrentSpawnTimer = 0;
-                EnemyCount++;
-            }
-        } else
-        {
+            EndUI.SetActive(true);
             return;
+        }
+        CurrentWaveTimer += Time.deltaTime;
+        if (EnemyCount >= EnemyPerWave && CurrentWaveTimer < TimeBetweenWave)
+        {
+            WaveCounter++;
+            CurrentWaveTimer = 0;
+            if (WaveCounter % BossWaveApparition == 0)
+            {
+                GameObject boss = Instantiate(Boss, Enter.position, Quaternion.identity);
+                boss.GetComponent<enemy_navmesh>().Move(Exit);
+            }
+            EnemyCount = 0;
+            return;
+        }
+        CurrentSpawnTimer += Time.deltaTime;
+        if (CurrentSpawnTimer >= timeBetweenSpawn)
+        {
+            CurrentEnemy = Instantiate(Enemy, Enter.position, Quaternion.identity);
+            CurrentEnemy.GetComponent<enemy_navmesh>().Move(Exit);
+            CurrentSpawnTimer = 0;
+            EnemyCount++;
         }
         if (xp >= xp_need)
         {
