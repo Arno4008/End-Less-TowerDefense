@@ -115,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6576154037671912605}
   - component: {fileID: 6576154037671912601}
-  - component: {fileID: 6576154037671912600}
+  - component: {fileID: 5817791565904772534}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
@@ -161,7 +161,7 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6576154037671912600
+--- !u!114 &5817791565904772534
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,9 +170,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6576154037671912603}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da3c6633cefdbc94a94b689ae52abf12, type: 3}
+  m_Script: {fileID: 11500000, guid: 001c2495f32937c408c154b99d667cb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  gain: 500
-  XP: 15
+  gain: 50
+  XP: 5
+  hp: 20
