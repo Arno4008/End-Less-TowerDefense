@@ -27,7 +27,6 @@ public class Manager : MonoBehaviour
     private int EnemyCount;
     public void Start()
     {
-        EndUI.SetActive(false);
         current_hp = base_hp;
         CurrentSpawnTimer = timeBetweenSpawn;
         CurrentWaveTimer = 0;
@@ -42,7 +41,10 @@ public class Manager : MonoBehaviour
             EndUI.SetActive(true);
             return;
         }
-        CurrentWaveTimer += Time.deltaTime;
+        if (CurrentWaveTimer < TimeBetweenWave)
+        {
+            CurrentWaveTimer += Time.deltaTime;
+        }
         if (EnemyCount >= EnemyPerWave && CurrentWaveTimer < TimeBetweenWave)
         {
             WaveCounter++;
