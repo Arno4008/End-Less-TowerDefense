@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Boss
   - Slots
+  - PlayButton
+  - MainMenu
   layers:
   - Default
   - TransparentFX
