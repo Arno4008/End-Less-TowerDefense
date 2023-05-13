@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour
 {
     public GameObject Enemy;
     public GameObject Boss;
-    public GameObject EndUI;
     public int current_hp;
     public int base_hp;
     public int levels;
@@ -38,7 +38,7 @@ public class Manager : MonoBehaviour
         GetComponent<UIManager>().Uimanager(money, levels, current_hp, WaveCounter, (TimeBetweenWave - CurrentWaveTimer));
         if (current_hp <= 0)
         {
-            EndUI.SetActive(true);
+            SceneManager.LoadScene("EndMenu");
             return;
         }
         if (CurrentWaveTimer < TimeBetweenWave)
@@ -51,8 +51,7 @@ public class Manager : MonoBehaviour
             CurrentWaveTimer = 0;
             if (WaveCounter % BossWaveApparition == 0)
             {
-                GameObject boss = Instantiate(Boss, Enter.position, Quaternion.identity);
-                boss.GetComponent<enemy_navmesh>().Move(Exit);
+                    GameObject boss = Instantiate(Boss, Enter.position, Quaternion.identity);
             }
             EnemyCount = 0;
             return;
@@ -61,7 +60,6 @@ public class Manager : MonoBehaviour
         if (CurrentSpawnTimer >= timeBetweenSpawn)
         {
             CurrentEnemy = Instantiate(Enemy, Enter.position, Quaternion.identity);
-            CurrentEnemy.GetComponent<enemy_navmesh>().Move(Exit);
             CurrentSpawnTimer = 0;
             EnemyCount++;
         }
