@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour
@@ -22,9 +23,9 @@ public class Manager : MonoBehaviour
     public int WaveCounter;
     public float TimeBetweenWave = 5;
 
-    private float CurrentSpawnTimer;
-    private float CurrentWaveTimer;
-    private int EnemyCount;
+    public float CurrentSpawnTimer;
+    public float CurrentWaveTimer;
+    public int EnemyCount;
     public void Start()
     {
         current_hp = base_hp;
@@ -44,7 +45,7 @@ public class Manager : MonoBehaviour
         {
             CurrentWaveTimer += Time.deltaTime;
         }
-        if (EnemyCount >= EnemyPerWave && CurrentWaveTimer < TimeBetweenWave)
+        if (EnemyCount >= EnemyPerWave && CurrentWaveTimer >= TimeBetweenWave)
         {
             WaveCounter++;
             CurrentWaveTimer = 0;
@@ -59,6 +60,8 @@ public class Manager : MonoBehaviour
         if (CurrentSpawnTimer >= timeBetweenSpawn)
         {
             CurrentEnemy = Instantiate(Enemy, Enter.position, Quaternion.identity);
+            CurrentEnemy.GetComponent<NavMeshAgent>().Warp(Enter.position);
+            CurrentEnemy.GetComponent<enemy_navmesh>().Move(Exit);
             CurrentSpawnTimer = 0;
             EnemyCount++;
         }

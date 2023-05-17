@@ -22,9 +22,15 @@ public class Tower : MonoBehaviour
             }
             if (enemy != null && Vector3.Distance(enemy.transform.position, transform.position) <= Range)
             {
-                Debug.Log(enemy);
                 timer = 0;
-                enemy.GetComponent<enemy>().hp -= Damage;
+                enemy.GetComponent<enemy_navmesh>().hp -= Damage;
+                if (enemy.transform.position.x >= transform.position.x) 
+                {
+                    transform.GetChild(1).transform.localEulerAngles = new Vector3(0, -180, 0);
+                } else
+                {
+                    transform.GetChild(1).transform.localEulerAngles = new Vector3(0, 180, 0);
+                }
             }
         }
     }

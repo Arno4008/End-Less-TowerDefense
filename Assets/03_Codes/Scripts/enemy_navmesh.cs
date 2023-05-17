@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 public class enemy_navmesh : MonoBehaviour
 {
@@ -16,17 +18,25 @@ public class enemy_navmesh : MonoBehaviour
     {
         manager = FindObjectOfType<Manager>();
         agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
     }
 
     public void Move(Transform Exit)
     {
-        agent.destination = Exit.position;
+        agent.SetDestination(Exit.position);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (agent.remainingDistance <= 1)
+        if(!agent.hasPath)
+        {
+            return;
+        }
+
+        transform.rotation = Quaternion.LookRotation(agent.velocity.normalized);
+
+        if (agent.remainingDistance <= agent.stoppingDistance)
         {
             manager.current_hp -= damage;
             Debug.Log("Damage! HP: " + manager.current_hp);
@@ -37,5 +47,14 @@ public class enemy_navmesh : MonoBehaviour
             manager.money += 20;
             Destroy(gameObject);
         }
+        // Update the way to the goal every second.
+        /*_wait += Time.deltaTime;
+        if (_wait > 1.0f)
+        {
+            _wait -= 1.0f;
+            NavMesh.CalculatePath(transform.position, GetComponent<NavMeshAgent>().destination, NavMesh.AllAreas, path);
+        }
+        for (int i = 0; i < path.corners.Length - 1; i++)
+            Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red);*/
     }
 }
