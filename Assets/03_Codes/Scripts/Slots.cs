@@ -29,6 +29,7 @@ public class Slots : MonoBehaviour
                 {
                     manager.money -= TowerPrice;
                     Instantiate(tower, selectedSlot.transform.position, Quaternion.identity, selectedSlot.transform);
+                    
                 }
             }
         }

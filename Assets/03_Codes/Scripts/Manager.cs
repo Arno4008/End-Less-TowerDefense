@@ -20,7 +20,7 @@ public class Manager : MonoBehaviour
     public int EnemyPerWave = 5;
     public int BossWaveApparition = 5;
     public int WaveCounter;
-    public float TimeBetweenWave = 20;
+    public float TimeBetweenWave = 5;
 
     private float CurrentSpawnTimer;
     private float CurrentWaveTimer;
@@ -31,7 +31,6 @@ public class Manager : MonoBehaviour
         CurrentSpawnTimer = timeBetweenSpawn;
         CurrentWaveTimer = 0;
         EnemyCount = 0;
-        WaveCounter = 0;
     }
     void Update()
     {
