@@ -15,9 +15,8 @@ public class Tower : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= FireRate)
         {
-
             if (enemy == null)
-            {            
+            {
                 enemy = GameObject.FindGameObjectWithTag("Enemy");
             }
             if (enemy != null && Vector3.Distance(enemy.transform.position, transform.position) <= Range)

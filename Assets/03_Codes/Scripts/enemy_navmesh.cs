@@ -25,36 +25,26 @@ public class enemy_navmesh : MonoBehaviour
     {
         agent.SetDestination(Exit.position);
     }
-
-    // Update is called once per frame
     void Update()
     {
-        if(!agent.hasPath)
+        if (hp <= 0)
         {
+            Debug.Log("Mort EnemyName: " + gameObject.name);
+            manager.money += 20;
+            Destroy(gameObject);
+        }
+        transform.rotation = Quaternion.LookRotation(agent.velocity.normalized);
+        if (!agent.hasPath)
+        {
+            Debug.Log("Erreur Path");
             return;
         }
-
-        transform.rotation = Quaternion.LookRotation(agent.velocity.normalized);
-
         if (agent.remainingDistance <= agent.stoppingDistance)
         {
             manager.current_hp -= damage;
             Debug.Log("Damage! HP: " + manager.current_hp);
+            Debug.Log("EnemyName: " + gameObject.name);
             Destroy(gameObject);
         }
-        if (hp <= 0)
-        {
-            manager.money += 20;
-            Destroy(gameObject);
-        }
-        // Update the way to the goal every second.
-        /*_wait += Time.deltaTime;
-        if (_wait > 1.0f)
-        {
-            _wait -= 1.0f;
-            NavMesh.CalculatePath(transform.position, GetComponent<NavMeshAgent>().destination, NavMesh.AllAreas, path);
-        }
-        for (int i = 0; i < path.corners.Length - 1; i++)
-            Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red);*/
     }
 }

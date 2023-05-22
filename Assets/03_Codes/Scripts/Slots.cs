@@ -25,7 +25,7 @@ public class Slots : MonoBehaviour
             if (hit.collider.gameObject.CompareTag("Slots") && hit.collider != null)
             {
                 GameObject selectedSlot = hit.collider.gameObject;
-                if (selectedSlot.transform.childCount == 0 && manager.money >= TowerPrice)
+                if (selectedSlot.transform.childCount == 1 && manager.money >= TowerPrice)
                 {
                     manager.money -= TowerPrice;
                     Instantiate(tower, selectedSlot.transform.position, Quaternion.identity, selectedSlot.transform);

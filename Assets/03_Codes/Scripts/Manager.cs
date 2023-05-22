@@ -52,6 +52,8 @@ public class Manager : MonoBehaviour
             if (WaveCounter % BossWaveApparition == 0)
             {
                     GameObject boss = Instantiate(Boss, Enter.position, Quaternion.identity);
+                    boss.GetComponent<NavMeshAgent>().Warp(Enter.position);
+                    boss.GetComponent<enemy_navmesh>().Move(Exit);
             }
             EnemyCount = 0;
             return;
