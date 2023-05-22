@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2354811054397616434}
   - component: {fileID: 2354811054397616435}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tourelle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2354811054397616437}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.58}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -58,6 +58,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2354811054397616434}
     m_Modifications:
+    - target: {fileID: 4312497313711513875, guid: 4d021c48a4dcc2046a211af9bc205114, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6646898260813735940, guid: 4d021c48a4dcc2046a211af9bc205114, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -118,6 +122,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tourelle Haut
       objectReference: {fileID: 0}
+    - target: {fileID: 6646898260813736056, guid: 4d021c48a4dcc2046a211af9bc205114, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -136,6 +144,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2354811054397616434}
     m_Modifications:
+    - target: {fileID: 2312856819254568276, guid: 258c8830080f73048849725d61fa6bae, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3862188888056779851, guid: 258c8830080f73048849725d61fa6bae, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -195,6 +207,10 @@ PrefabInstance:
     - target: {fileID: 3862188888056779863, guid: 258c8830080f73048849725d61fa6bae, type: 3}
       propertyPath: m_Name
       value: Pied Tourelle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3862188888056779863, guid: 258c8830080f73048849725d61fa6bae, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

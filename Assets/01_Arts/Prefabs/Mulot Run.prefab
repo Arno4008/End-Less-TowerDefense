@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1285574387300703236}
   - component: {fileID: -3152983702295205687}
   - component: {fileID: -4419698773600701324}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mulot Run
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 6555554130022284975}
   - component: {fileID: 6721095107135750870}
   - component: {fileID: 4778541957776337458}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
